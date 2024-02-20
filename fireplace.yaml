@@ -19,6 +19,11 @@ logger:
 api:
 ota:
 
+external_components:
+  - source:
+      type: local
+      path: components
+
 sensor:
   - platform: custom
     lambda: |-
