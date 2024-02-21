@@ -46,13 +46,16 @@ remote_receiver:
     # Don't use D3,D4,D8,TX, boot often fails.
     # Can't be D0 or GPIO17 b/c no interrupts
 
+    buffer_size: 600
     # Uncomment the following lines to enable dumping signals received to the console
 #    dump:
 #      - raw
     on_raw:
+      - globals.set:
+          id: trigger_enabled
+          value: "false"
       - lambda: |-
           int code = getCode(x);
-          id(trigger_enabled) = false;
           if (code == 0) {
             id(fireplace).turn_off().perform();
           } else if (code == 6) {
@@ -80,7 +83,9 @@ remote_receiver:
             call.set_speed(1);
             call.perform();
           }
-          id(trigger_enabled) = true;
+      - globals.set:
+          id: trigger_enabled
+          value: "true"
 
 output:
   - platform: template
