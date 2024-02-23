@@ -10,7 +10,6 @@ using namespace std;
 /*
     Parses the transmission and decodes the state.
     TODO: Figure out the whole packet and properly put it into a structure
-    TODO: Since it sends the same packet multiple times, this should capture the multiple packets and find if any are bad
 */
 int getCode(vector<int> transmission) {
 
